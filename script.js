@@ -12,8 +12,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 window.addEventListener('scroll', function() {
     const header = document.querySelector('header');
     if (window.scrollY > 50) {
-        header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-        header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
+        header.style.backgroundColor = 'rgba(9, 0, 0, 0.95)';
+        header.style.boxShadow = '0 2px 5px rgba(10, 0, 0, 0.1)';
     } else {
         header.style.backgroundColor = '#fff';
         header.style.boxShadow = 'none';
@@ -49,16 +49,6 @@ projectCards.forEach(card => {
     card.addEventListener('mouseleave', () => {
         card.style.transform = 'translateY(0)';
     });
-});
-
-// Form submission
-const contactForm = document.querySelector('.contact-form form');
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Process form data here
-    alert('Your message has been sent!');
-    contactForm.reset();
 });
 
 // Mobile menu toggle
@@ -117,8 +107,68 @@ const addMobileMenuStyles = () => {
     document.head.appendChild(style);
 };
 
+// Timeline Animation
+const timelineItems = document.querySelectorAll('.timeline-item');
+const timelineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+timelineItems.forEach(item => {
+    timelineObserver.observe(item);
+});
+
 // Initialization
 document.addEventListener('DOMContentLoaded', () => {
     createMobileMenu();
     addMobileMenuStyles();
+});
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const submitButton = this.querySelector('button[type="submit"]');
+    const popupMessage = document.getElementById('popupMessage');
+    
+    // Disable submit button and show loading state
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Show success popup
+            popupMessage.classList.add('active');
+            // Reset form
+            this.reset();
+            // Hide popup after 3 seconds
+            setTimeout(() => {
+                popupMessage.classList.remove('active');
+            }, 3000);
+        } else {
+            throw new Error('Network response was not ok');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('There was a problem sending your message. Please try again.');
+    })
+    .finally(() => {
+        // Re-enable submit button
+        submitButton.disabled = false;
+        submitButton.textContent = 'Send Message';
+    });
 }); 
