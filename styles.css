@@ -322,29 +322,68 @@ h2::after {
 .contact-form {
     max-width: 600px;
     margin: 0 auto;
-    background: var(--card-bg);
     padding: 2rem;
+    background: var(--card-bg);
     border-radius: 15px;
     box-shadow: var(--shadow);
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+.form-group {
+    margin-bottom: 1.5rem;
 }
 
-input, textarea {
-    padding: 1rem;
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
     border: 2px solid #e5e7eb;
-    border-radius: 10px;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.contact-info {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
     transition: all 0.3s ease;
 }
 
-input:focus, textarea:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-    outline: none;
+.email-link:hover {
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.email-link i {
+    font-size: 1.2rem;
 }
 
 /* Button Style */
@@ -368,65 +407,81 @@ input:focus, textarea:focus {
     box-shadow: var(--shadow-hover);
 }
 
-/* Footer */
+/* Footer Styles */
 footer {
     background: var(--gradient-1);
     color: white;
-    text-align: center;
     padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Social Links */
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.1)"/></svg>');
+    opacity: 0.1;
+}
+
 .social-links {
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin: 2rem 0;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
-.social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 60px;
-    height: 60px;
+.social-links a {
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
     border-radius: 50%;
-    background: var(--gradient-1);
-    color: whitesmoke;
-    font-size: 1.8rem;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow);
+    background: rgba(255, 255, 255, 0.1);
 }
 
-.social-link:hover {
+.social-links a:hover {
     transform: translateY(-5px) scale(1.1);
-    box-shadow: var(--shadow-hover);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.social-link i {
-    transition: all 0.3s ease;
-    font-weight: bold;
-}
-
-.social-link:hover i {
+.social-links a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
     transform: scale(1.2);
+    opacity: 0;
+    transition: all 0.3s ease;
 }
 
-/* Social Media Colors */
-.social-link.github:hover {
-    background: #333;
+.social-links a:hover::after {
+    transform: scale(1);
+    opacity: 1;
 }
 
-.social-link.linkedin:hover {
-    background: #f8f9fa;
-}
-
-.social-link.twitter:hover {
-    background: #1da1f2;
-}
-
-.social-link.instagram:hover {
-    background: #f9f7f8;
+footer p {
+    position: relative;
+    z-index: 1;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 @media (max-width: 768px) {
