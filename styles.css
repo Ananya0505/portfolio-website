@@ -27,53 +27,48 @@ body {
 
 /* Navigation */
 header {
-    background-color: #000000;
-    backdrop-filter: none;
-    box-shadow: 0 2px 10px rgba(255, 105, 180, 0.1);
     position: fixed;
-    width: 100%;
     top: 0;
+    left: 0;
+    width: 100%;
+    background: #000;
+    padding: 1rem 0;
     z-index: 1000;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Remove any scroll-related background changes */
-header.scrolled {
-    background-color: #000000;
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
 }
 
 nav ul {
     display: flex;
-    justify-content: center;
     list-style: none;
-    padding: 1rem 0;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
-    margin: 0 1.5rem;
+    margin-left: 2rem;
 }
 
 nav ul li a {
+    color: #fff;
     text-decoration: none;
-    color: #ffffff;
-    font-weight: 600;
+    font-weight: 500;
     transition: color 0.3s ease;
-    position: relative;
-}
-
-nav ul li a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #ff69b4;
-    transition: width 0.3s ease;
-}
-
-nav ul li a:hover::after {
-    width: 100%;
 }
 
 nav ul li a:hover {
@@ -82,143 +77,65 @@ nav ul li a:hover {
 
 /* Hero Section */
 .hero {
-    position: relative;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.1)"/></svg>');
-    opacity: 0.1;
-    animation: backgroundMove 20s linear infinite;
-}
-
-@keyframes backgroundMove {
-    0% { background-position: 0 0; }
-    100% { background-position: 20px 20px; }
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/landpage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 2rem;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 0 2rem;
-}
-
-.greeting {
+    max-width: 1200px;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    justify-content: space-between;
+    gap: 2rem;
 }
 
-.wave {
-    font-size: 2.5rem;
-    animation: wave 2s infinite;
-}
-
-@keyframes wave {
-    0% { transform: rotate(0deg); }
-    10% { transform: rotate(14deg); }
-    20% { transform: rotate(-8deg); }
-    30% { transform: rotate(14deg); }
-    40% { transform: rotate(-4deg); }
-    50% { transform: rotate(10deg); }
-    60% { transform: rotate(0deg); }
-    100% { transform: rotate(0deg); }
+.hero-text {
+    flex: 1;
+    text-align: left;
 }
 
 .hero-text h1 {
     font-size: 3.5rem;
-    margin: 0;
-    animation: fadeInUp 1s ease-out;
-}
-
-.highlight {
+    margin-bottom: 1rem;
     color: #ff69b4;
-    position: relative;
-    display: inline-block;
 }
 
-.highlight::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: #ff69b4;
-    transform: scaleX(0);
-    transform-origin: left;
-    animation: underline 1s ease-out forwards;
-    animation-delay: 1s;
-}
-
-@keyframes underline {
-    to { transform: scaleX(1); }
-}
-
-.typing-container {
-    margin: 1.5rem 0;
-    min-height: 2.5rem;
-}
-
-.typing-text {
+.hero-text h2 {
     font-size: 2rem;
-    color: #ff69b4;
-    font-weight: 600;
-    display: inline-block;
-    position: relative;
-    white-space: nowrap;
-}
-
-/* Remove the typing and blink-caret animations */
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: #ff69b4 }
-}
-
-.tagline-container {
-    margin: 2rem 0;
-    animation: fadeInUp 1s ease-out;
-    animation-delay: 0.5s;
-}
-
-.tagline {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #e0e0e0;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.connect-container {
-    margin-top: 2rem;
-    animation: fadeInUp 1s ease-out;
-    animation-delay: 1s;
-}
-
-.connect-text {
-    font-size: 1.1rem;
-    font-style: italic;
-    color: #f0f0f0;
     margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.hero-text .tagline {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #e0e0e0;
+}
+
+.hero-text .connect-text {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #e0e0e0;
+}
+
+.hero-image {
+    flex: 1;
+    max-width: 500px;
+}
+
+.hero-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(255, 105, 180, 0.3);
 }
 
 .get-in-touch-btn {
@@ -231,157 +148,41 @@ nav ul li a:hover {
     text-decoration: none;
     border-radius: 30px;
     font-weight: bold;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    position: relative;
-}
-
-.get-in-touch-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.get-in-touch-btn:hover::before {
-    opacity: 1;
-}
-
-.get-in-touch-btn:hover .btn-icon {
-    transform: translateX(5px);
-}
-
-.btn-text, .btn-icon {
-    position: relative;
-    z-index: 1;
-}
-
-.btn-icon {
     transition: transform 0.3s ease;
 }
 
-.hero-scroll-indicator {
-    position: absolute;
-    bottom: 0 rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-    animation: bounce 2s infinite;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
+.get-in-touch-btn:hover {
+    transform: translateY(-2px);
 }
 
-.hero-scroll-indicator:hover {
-    opacity: 1;
+.btn-text {
+    font-size: 1.1rem;
 }
 
-.mouse {
-    width: 20px;
-    height: 35px;
-    border: 1.5px solid #fff;
-    border-radius: 10px;
-    position: relative;
+.btn-icon {
+    font-size: 1.2rem;
 }
 
-.wheel {
-    width: 3px;
-    height: 6px;
-    background: #fff;
-    border-radius: 1.5px;
-    position: absolute;
-    top: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: scroll 2s infinite;
-}
-
-.scroll-arrow {
-    display: block;
-    width: 15px;
-    height: 15px;
-    transform: rotate(45deg);
-    border-right: 1.5px solid #fff;
-    border-bottom: 1.5px solid #fff;
-    animation: arrow 2s infinite;
-}
-
-.scroll-arrow span {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-right: 2px solid #fff;
-    border-bottom: 2px solid #fff;
-    animation: arrow 2s infinite;
-}
-
-.scroll-arrow span:nth-child(2) {
-    animation-delay: -0.2s;
-}
-
-@keyframes scroll {
-    0% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(20px); }
-}
-
-@keyframes arrow {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
     .hero-content {
         flex-direction: column;
         text-align: center;
-        padding: 0;
-        gap: 0;
-    }
-
-    .hero-image {
-        width: 100%;
-        height: 50vh;
     }
 
     .hero-text {
         text-align: center;
-        padding: 2rem;
-        width: 100%;
     }
 
-    .hero-content h1 {
+    .hero-text h1 {
         font-size: 2.5rem;
     }
 
-    .typing-text {
+    .hero-text h2 {
         font-size: 1.5rem;
+    }
+
+    .hero-image {
+        max-width: 100%;
     }
 }
 
